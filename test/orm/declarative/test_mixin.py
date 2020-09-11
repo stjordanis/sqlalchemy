@@ -1674,7 +1674,7 @@ class DeclaredAttrTest(DeclarativeTestBase, testing.AssertsCompiledSQL):
                 counter(cls.__name__)
                 return Column("x", Integer)
 
-        class A(Base, Mixin):
+        class AIshClass(Base, Mixin):
             __tablename__ = "b"
             id = Column(Integer, primary_key=True)
 
@@ -1682,10 +1682,10 @@ class DeclaredAttrTest(DeclarativeTestBase, testing.AssertsCompiledSQL):
             def my_other_prop(cls):
                 return column_property(cls.my_prop + 5)
 
-        eq_(counter.mock_calls, [mock.call("A")])
+        eq_(counter.mock_calls, [mock.call("AIshClass")])
         import gc
 
-        del A
+        del AIshClass
 
         status = ""
         for i in range(8):
@@ -1694,15 +1694,15 @@ class DeclaredAttrTest(DeclarativeTestBase, testing.AssertsCompiledSQL):
         from sqlalchemy.orm.clsregistry import _key_is_empty
 
         if not _key_is_empty(
-            "A",
+            "AIshClass",
             Base.registry._class_registry,
             lambda cls: hasattr(cls, "my_other_prop"),
         ):
-            actual_a = Base.registry._class_registry["A"]
+            actual_a = Base.registry._class_registry["AIshClass"]
             refs = gc.get_referents(actual_a)
             assert False, "registry keys: %s, obj: %s %s referents: %s" % (
                 list(Base.registry._class_registry.keys()),
-                Base.registry._class_registry["A"],
+                Base.registry._class_registry["AIshClass"],
                 status,
                 refs,
             )
