@@ -1700,11 +1700,18 @@ class DeclaredAttrTest(DeclarativeTestBase, testing.AssertsCompiledSQL):
         ):
             actual_a = Base.registry._class_registry["AIshClass"]
             refs = gc.get_referents(actual_a)
-            assert False, "registry keys: %s, obj: %s %s referents: %s" % (
-                list(Base.registry._class_registry.keys()),
-                Base.registry._class_registry["AIshClass"],
-                status,
-                refs,
+            assert False, (
+                "gc enable: %s  gc debug: %s gc count: %s gc thresh %s registry keys: %s, obj: %s %s referents: %s"  # noqa
+                % (
+                    gc.isenabled(),
+                    gc.get_debug(),
+                    gc.get_count(),
+                    gc.get_threshold(),
+                    list(Base.registry._class_registry.keys()),
+                    Base.registry._class_registry["AIshClass"],
+                    status,
+                    refs,
+                )
             )
 
     def test_can_we_access_the_mixin_straight(self):
