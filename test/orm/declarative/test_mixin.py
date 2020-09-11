@@ -1684,12 +1684,14 @@ class DeclaredAttrTest(DeclarativeTestBase, testing.AssertsCompiledSQL):
 
         eq_(counter.mock_calls, [mock.call("AIshClass")])
         import gc
+        import time
 
         del AIshClass
 
         status = ""
         for i in range(8):
             status += " %s" % (gc.collect(),)
+            time.sleep(0.001)
 
         from sqlalchemy.orm.clsregistry import _key_is_empty
 
