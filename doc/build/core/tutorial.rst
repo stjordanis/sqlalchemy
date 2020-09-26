@@ -157,10 +157,7 @@ each table first before creating, so it's safe to call multiple times:
         fullname VARCHAR,
         PRIMARY KEY (id)
     )
-    <BLANKLINE>
-    <BLANKLINE>
     [...] ()
-    <BLANKLINE>
     CREATE TABLE addresses (
         id INTEGER NOT NULL,
         user_id INTEGER,
@@ -168,8 +165,6 @@ each table first before creating, so it's safe to call multiple times:
         PRIMARY KEY (id),
         FOREIGN KEY(user_id) REFERENCES users (id)
     )
-    <BLANKLINE>
-    <BLANKLINE>
     [...] ()
     COMMIT
 

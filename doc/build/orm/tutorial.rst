@@ -168,7 +168,7 @@ this information for a specific table is called the :class:`_schema.Table` objec
 one for us.  We can see this object by inspecting the ``__table__`` attribute::
 
     >>> User.__table__ # doctest: +NORMALIZE_WHITESPACE
-    Table('users', MetaData(bind=None),
+    Table('users', MetaData(),
                 Column('id', Integer(), table=<users>, primary_key=True, nullable=False),
                 Column('name', String(), table=<users>),
                 Column('fullname', String(), table=<users>),
@@ -217,8 +217,6 @@ the actual ``CREATE TABLE`` statement:
         nickname VARCHAR,
         PRIMARY KEY (id)
     )
-    <BLANKLINE>
-    <BLANKLINE>
     [...] ()
     COMMIT
 
@@ -1223,8 +1221,6 @@ already been created:
         PRIMARY KEY (id),
         FOREIGN KEY(user_id) REFERENCES users (id)
     )
-    <BLANKLINE>
-    <BLANKLINE>
     [...] ()
     COMMIT
 
@@ -2089,10 +2085,7 @@ Create new tables:
         PRIMARY KEY (id),
         UNIQUE (keyword)
     )
-    <BLANKLINE>
-    <BLANKLINE>
     [...] ()
-    <BLANKLINE>
     CREATE TABLE posts (
         id INTEGER NOT NULL,
         user_id INTEGER,
@@ -2101,10 +2094,7 @@ Create new tables:
         PRIMARY KEY (id),
         FOREIGN KEY(user_id) REFERENCES users (id)
     )
-    <BLANKLINE>
-    <BLANKLINE>
     [...] ()
-    <BLANKLINE>
     CREATE TABLE post_keywords (
         post_id INTEGER NOT NULL,
         keyword_id INTEGER NOT NULL,
@@ -2112,8 +2102,6 @@ Create new tables:
         FOREIGN KEY(post_id) REFERENCES posts (id),
         FOREIGN KEY(keyword_id) REFERENCES keywords (id)
     )
-    <BLANKLINE>
-    <BLANKLINE>
     [...] ()
     COMMIT
 

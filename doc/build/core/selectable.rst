@@ -141,6 +141,7 @@ The classes here are generated using the constructors listed at
 
 .. autoclass:: TextualSelect
    :members:
+   :inherited-members:
 
 .. autoclass:: Values
    :members:
